@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig>
+<Tracking>
+<ModelTarget name="submarino" motionHint="adaptive" trackingMode="car" optimizeTrackingFor="default"/>
+
+</Tracking>
+
+<Assembly name="submarinos_assembly" assemblyId="63dbeb6a94b74a6885259de9455cbbb3">
+<Part name="submarino" translation="0 0 0" rotation="AD: 0 0 1 0"/>
+<EntryPoint name="GuideView_0000" translation="-0.00035131 0.00603563 2.7668" rotation="AD: 0.999839 0.0717852 -0.267906 208.955" trained="no">
+
+</EntryPoint>
+<EntryPoint name="GuideView_0001" translation="8.70228e-05 0.0059036 2.76703" rotation="AD: -0.932212 -0.432641 1.61464 165.129" trained="no">
+
+</EntryPoint>
+<EntryPoint name="GuideView_0002" translation="0.000351191 0.00612265 2.76665" rotation="AD: 0.731172 -0.731172 2.72877 187.682" trained="no">
+
+</EntryPoint>
+<EntryPoint name="GuideView_0003" translation="-8.7142e-05 0.00625482 2.76642" rotation="AD: 0.997221 -0.154271 0.575746 205.905" trained="no">
+
+</EntryPoint>
+
+</Assembly>
+
+</QCARConfig>
