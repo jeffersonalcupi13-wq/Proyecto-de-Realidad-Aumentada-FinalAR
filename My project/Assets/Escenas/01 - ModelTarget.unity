@@ -872,7 +872,7 @@ GameObject:
   - component: {fileID: 1885273516}
   - component: {fileID: 1885273515}
   - component: {fileID: 1885273514}
-  - component: {fileID: 1885273513}
+  - component: {fileID: 1885273517}
   m_Layer: 0
   m_Name: ModelTarget
   m_TagString: Untagged
@@ -880,24 +880,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1885273513
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1885273512}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1621554113, guid: 8a9a760f95896c34689febc965510927, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mObserverBehaviour: {fileID: 1885273515}
-  mHiddenRoot: {fileID: 0}
-  mTargetName: submarino
-  mDatasetName: Vuforia/submarino.xml
-  mCastedBehaviour: {fileID: 1885273515}
-  mModelTargetPreview: {fileID: 0}
 --- !u!114 &1885273514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -985,7 +967,7 @@ MonoBehaviour:
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
   mHasRealisticTextures: 0
-  mPreview: {fileID: 1885273513}
+  mPreview: {fileID: 1885273517}
   mAutoValidationDataSetName: 
   mGuideViewDisplayModeNeedsUpgrade: 0
 --- !u!4 &1885273516
@@ -1003,6 +985,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1885273517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1885273512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1621554113, guid: 8a9a760f95896c34689febc965510927, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mObserverBehaviour: {fileID: 1885273515}
+  mHiddenRoot: {fileID: 0}
+  mTargetName: submarino
+  mDatasetName: Vuforia/submarino.xml
+  mCastedBehaviour: {fileID: 1885273515}
+  mModelTargetPreview: {fileID: 0}
 --- !u!1 &2077914612
 GameObject:
   m_ObjectHideFlags: 0
