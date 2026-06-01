@@ -1,5 +1,5 @@
 using UnityEngine;
-using Vuforia; // Necesario
+using Vuforia;
 
 public class AudioPanelManager : MonoBehaviour
 {
@@ -8,59 +8,97 @@ public class AudioPanelManager : MonoBehaviour
     public GameObject advertenciaUI;
     public AudioSource audioSource;
 
-    // Referencia al objeto que tiene el BarcodeBehaviour
-    public BarcodeBehaviour barcodeTarget;
-    private bool haEscaneado = false;
+    private ObserverBehaviour observer;
 
-    void Update()
+    private bool qrDetectado = false;
+    private bool cerradoManual = false;
+
+    void Start()
     {
-        if (haEscaneado) return;
+        observer = GetComponent<ObserverBehaviour>();
 
-        // Esta es la forma más pura de detectar si el target está "visto"
-        if (barcodeTarget != null && barcodeTarget.enabled && barcodeTarget.gameObject.activeInHierarchy)
+        if (audioSource != null)
+            audioSource.Stop();
+
+        panelReproduciendo.SetActive(false);
+        panelPausado.SetActive(false);
+        advertenciaUI.SetActive(true);
+
+        if (observer != null)
+            observer.OnTargetStatusChanged += OnStatusChanged;
+    }
+
+    void OnDestroy()
+    {
+        if (observer != null)
+            observer.OnTargetStatusChanged -= OnStatusChanged;
+    }
+
+    void OnStatusChanged(ObserverBehaviour behaviour, TargetStatus status)
+    {
+        // QR detectado
+        if ((status.Status == Status.TRACKED ||
+             status.Status == Status.EXTENDED_TRACKED) &&
+             !qrDetectado &&
+             !cerradoManual)
         {
-            // Añadimos una pequeña validación:
-            // Vuforia suele poner el objeto en modo 'activo' cuando reconoce el barcode.
+            qrDetectado = true;
             ActivarAudioAR();
-            haEscaneado = true;
+        }
+
+        // QR perdido
+        else if (status.Status == Status.NO_POSE)
+        {
+            qrDetectado = false;
+
         }
     }
 
-    public void ActivarAudioAR()
+    void ActivarAudioAR()
     {
-        if (advertenciaUI) advertenciaUI.SetActive(false);
-        if (panelReproduciendo) panelReproduciendo.SetActive(true);
-        if (audioSource) audioSource.Play();
+        advertenciaUI.SetActive(false);
+        panelReproduciendo.SetActive(true);
+        panelPausado.SetActive(false);
+
+        if (!audioSource.isPlaying)
+            audioSource.Play();
     }
 
-    // ... mantén tus otros métodos (PausarAudio, etc.) igual que antes
     public void PausarAudio()
     {
-        if (audioSource != null) audioSource.Pause();
-        if (panelReproduciendo != null) panelReproduciendo.SetActive(false);
-        if (panelPausado != null) panelPausado.SetActive(true);
+        Debug.Log("PAUSA");
+
+        audioSource.Pause();
+        panelReproduciendo.SetActive(false);
+        panelPausado.SetActive(true);
     }
 
     public void ReanudarAudio()
     {
-        if (audioSource != null) audioSource.UnPause();
-        if (panelReproduciendo != null) panelReproduciendo.SetActive(true);
-        if (panelPausado != null) panelPausado.SetActive(false);
+        Debug.Log("REANUDAR");
+
+        audioSource.UnPause();
+        panelPausado.SetActive(false);
+        panelReproduciendo.SetActive(true);
+    }
+
+    public void RepetirAudio()
+    {
+        Debug.Log("REPETIR");
+
+        audioSource.Stop();
+        audioSource.Play();
     }
 
     public void DetenerAudio()
     {
-        if (audioSource != null) audioSource.Stop();
-        if (panelReproduciendo != null) panelReproduciendo.SetActive(false);
-        if (panelPausado != null) panelPausado.SetActive(false);
-        if (advertenciaUI != null) advertenciaUI.SetActive(true);
+        Debug.Log("DETENER");
 
-        // IMPORTANTE: Un pequeño retraso antes de volver a permitir el escaneo
-        Invoke("ReiniciarEscaneo", 2.0f);
-    }
+        cerradoManual = true;
 
-    void ReiniciarEscaneo()
-    {
-        haEscaneado = false;
+        audioSource.Stop();
+        panelReproduciendo.SetActive(false);
+        panelPausado.SetActive(false);
+        advertenciaUI.SetActive(true);
     }
 }
