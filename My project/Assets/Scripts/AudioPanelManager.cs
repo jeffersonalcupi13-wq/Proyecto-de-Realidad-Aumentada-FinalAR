@@ -3,27 +3,41 @@ using Vuforia;
 
 public class AudioPanelManager : MonoBehaviour
 {
+    [Header("UI")]
     public GameObject panelReproduciendo;
     public GameObject panelPausado;
     public GameObject advertenciaUI;
+
+    [Header("Audio")]
     public AudioSource audioSource;
 
     private ObserverBehaviour observer;
 
+    // Control interno
     private bool qrDetectado = false;
-    private bool cerradoManual = false;
+    private bool audioIniciado = false;
 
     void Start()
     {
         observer = GetComponent<ObserverBehaviour>();
 
+        // Estado inicial
         if (audioSource != null)
+        {
             audioSource.Stop();
+            audioSource.playOnAwake = false;
+        }
 
-        panelReproduciendo.SetActive(false);
-        panelPausado.SetActive(false);
-        advertenciaUI.SetActive(true);
+        if (panelReproduciendo != null)
+            panelReproduciendo.SetActive(false);
 
+        if (panelPausado != null)
+            panelPausado.SetActive(false);
+
+        if (advertenciaUI != null)
+            advertenciaUI.SetActive(true);
+
+        // Conectar evento Vuforia
         if (observer != null)
             observer.OnTargetStatusChanged += OnStatusChanged;
     }
@@ -39,8 +53,7 @@ public class AudioPanelManager : MonoBehaviour
         // QR detectado
         if ((status.Status == Status.TRACKED ||
              status.Status == Status.EXTENDED_TRACKED) &&
-             !qrDetectado &&
-             !cerradoManual)
+             !qrDetectado)
         {
             qrDetectado = true;
             ActivarAudioAR();
@@ -49,56 +62,101 @@ public class AudioPanelManager : MonoBehaviour
         // QR perdido
         else if (status.Status == Status.NO_POSE)
         {
+            // NO apagar nada
+            // Solo permitir nuevo tracking sin duplicar
             qrDetectado = false;
-
         }
     }
 
     void ActivarAudioAR()
     {
-        advertenciaUI.SetActive(false);
-        panelReproduciendo.SetActive(true);
-        panelPausado.SetActive(false);
+        if (advertenciaUI != null)
+            advertenciaUI.SetActive(false);
 
-        if (!audioSource.isPlaying)
+        if (panelReproduciendo != null)
+            panelReproduciendo.SetActive(true);
+
+        if (panelPausado != null)
+            panelPausado.SetActive(false);
+
+        // Solo iniciar una vez
+        if (audioSource != null && !audioIniciado)
+        {
             audioSource.Play();
+            audioIniciado = true;
+        }
     }
 
+    // BOTÓN PAUSA
     public void PausarAudio()
     {
-        Debug.Log("PAUSA");
+        if (audioSource != null)
+            audioSource.Pause();
 
-        audioSource.Pause();
-        panelReproduciendo.SetActive(false);
-        panelPausado.SetActive(true);
+        if (panelReproduciendo != null)
+            panelReproduciendo.SetActive(false);
+
+        if (panelPausado != null)
+            panelPausado.SetActive(true);
     }
 
+    // BOTÓN REANUDAR
     public void ReanudarAudio()
     {
-        Debug.Log("REANUDAR");
+        if (audioSource != null)
+            audioSource.UnPause();
 
-        audioSource.UnPause();
-        panelPausado.SetActive(false);
-        panelReproduciendo.SetActive(true);
+        if (panelPausado != null)
+            panelPausado.SetActive(false);
+
+        if (panelReproduciendo != null)
+            panelReproduciendo.SetActive(true);
     }
 
+    // BOTÓN REPETIR
     public void RepetirAudio()
     {
-        Debug.Log("REPETIR");
+        if (audioSource != null)
+        {
+            audioSource.time = 0f;
+            audioSource.Play();
+        }
 
-        audioSource.Stop();
-        audioSource.Play();
+        if (panelPausado != null)
+            panelPausado.SetActive(false);
+
+        if (panelReproduciendo != null)
+            panelReproduciendo.SetActive(true);
     }
 
+    // BOTÓN X
+    // BOTÓN X
     public void DetenerAudio()
     {
-        Debug.Log("DETENER");
+        if (audioSource != null)
+            audioSource.Stop();
 
-        cerradoManual = true;
+        if (panelReproduciendo != null)
+            panelReproduciendo.SetActive(false);
 
-        audioSource.Stop();
-        panelReproduciendo.SetActive(false);
-        panelPausado.SetActive(false);
-        advertenciaUI.SetActive(true);
+        if (panelPausado != null)
+            panelPausado.SetActive(false);
+
+        // Ocultar advertencia por ahora
+        if (advertenciaUI != null)
+            advertenciaUI.SetActive(false);
+
+        // Reset
+        audioIniciado = false;
+        qrDetectado = false;
+
+        // Mostrar advertencia en 4 segundos
+        Invoke("MostrarAdvertencia", 4f);
+    }
+
+    void MostrarAdvertencia()
+    {
+        if (advertenciaUI != null)
+            advertenciaUI.SetActive(true);
     }
 }
