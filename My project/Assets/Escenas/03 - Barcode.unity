@@ -2644,7 +2644,7 @@ MonoBehaviour:
   panelPausado: {fileID: 1627159392}
   advertenciaUI: {fileID: 116494634}
   audioSource: {fileID: 2008156802}
-  barcodeTarget: {fileID: 198699351}
+  barcodeTarget: {fileID: 0}
 --- !u!4 &2008156801
 Transform:
   m_ObjectHideFlags: 0
@@ -2671,7 +2671,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 2c91cc35ebe4a72408c34be52d3d1747, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

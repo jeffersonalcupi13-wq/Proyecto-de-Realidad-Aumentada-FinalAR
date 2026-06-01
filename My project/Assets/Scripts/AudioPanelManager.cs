@@ -16,9 +16,11 @@ public class AudioPanelManager : MonoBehaviour
     {
         if (haEscaneado) return;
 
-        // Cambiamos la forma de verificar si el objeto está siendo rastreado
-        if (barcodeTarget != null && barcodeTarget.enabled)
+        // Esta es la forma más pura de detectar si el target está "visto"
+        if (barcodeTarget != null && barcodeTarget.enabled && barcodeTarget.gameObject.activeInHierarchy)
         {
+            // Añadimos una pequeña validación:
+            // Vuforia suele poner el objeto en modo 'activo' cuando reconoce el barcode.
             ActivarAudioAR();
             haEscaneado = true;
         }
