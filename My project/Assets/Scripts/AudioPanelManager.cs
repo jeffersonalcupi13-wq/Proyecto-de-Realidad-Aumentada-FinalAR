@@ -13,9 +13,8 @@ public class AudioPanelManager : MonoBehaviour
 
     private ObserverBehaviour observer;
 
-    // Control interno
-    private bool qrDetectado = false;
-    private bool audioIniciado = false;
+    // Control
+    private bool audioActivo = false;
 
     void Start()
     {
@@ -37,7 +36,7 @@ public class AudioPanelManager : MonoBehaviour
         if (advertenciaUI != null)
             advertenciaUI.SetActive(true);
 
-        // Conectar evento Vuforia
+        // Evento QR
         if (observer != null)
             observer.OnTargetStatusChanged += OnStatusChanged;
     }
@@ -50,22 +49,16 @@ public class AudioPanelManager : MonoBehaviour
 
     void OnStatusChanged(ObserverBehaviour behaviour, TargetStatus status)
     {
-        // QR detectado
+        // SOLO cuando se detecta por primera vez
         if ((status.Status == Status.TRACKED ||
              status.Status == Status.EXTENDED_TRACKED) &&
-             !qrDetectado)
+             !audioActivo)
         {
-            qrDetectado = true;
             ActivarAudioAR();
         }
 
-        // QR perdido
-        else if (status.Status == Status.NO_POSE)
-        {
-            // NO apagar nada
-            // Solo permitir nuevo tracking sin duplicar
-            qrDetectado = false;
-        }
+        // Cuando pierde QR NO HACER NADA
+        // Audio y panel permanecen
     }
 
     void ActivarAudioAR()
@@ -79,15 +72,15 @@ public class AudioPanelManager : MonoBehaviour
         if (panelPausado != null)
             panelPausado.SetActive(false);
 
-        // Solo iniciar una vez
-        if (audioSource != null && !audioIniciado)
+        // Evitar doble audio
+        if (audioSource != null && !audioActivo)
         {
             audioSource.Play();
-            audioIniciado = true;
+            audioActivo = true;
         }
     }
 
-    // BOTÓN PAUSA
+    // PAUSAR
     public void PausarAudio()
     {
         if (audioSource != null)
@@ -100,7 +93,7 @@ public class AudioPanelManager : MonoBehaviour
             panelPausado.SetActive(true);
     }
 
-    // BOTÓN REANUDAR
+    // REANUDAR
     public void ReanudarAudio()
     {
         if (audioSource != null)
@@ -113,7 +106,7 @@ public class AudioPanelManager : MonoBehaviour
             panelReproduciendo.SetActive(true);
     }
 
-    // BOTÓN REPETIR
+    // REPETIR
     public void RepetirAudio()
     {
         if (audioSource != null)
@@ -129,8 +122,7 @@ public class AudioPanelManager : MonoBehaviour
             panelReproduciendo.SetActive(true);
     }
 
-    // BOTÓN X
-    // BOTÓN X
+    // X
     public void DetenerAudio()
     {
         if (audioSource != null)
@@ -142,16 +134,11 @@ public class AudioPanelManager : MonoBehaviour
         if (panelPausado != null)
             panelPausado.SetActive(false);
 
-        // Ocultar advertencia por ahora
-        if (advertenciaUI != null)
-            advertenciaUI.SetActive(false);
+        // Reset para permitir nuevo escaneo
+        audioActivo = false;
 
-        // Reset
-        audioIniciado = false;
-        qrDetectado = false;
-
-        // Mostrar advertencia en 4 segundos
-        Invoke("MostrarAdvertencia", 4f);
+        // Advertencia vuelve en 4s
+        Invoke(nameof(MostrarAdvertencia), 4f);
     }
 
     void MostrarAdvertencia()
