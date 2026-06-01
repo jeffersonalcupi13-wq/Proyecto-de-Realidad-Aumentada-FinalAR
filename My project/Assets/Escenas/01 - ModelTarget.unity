@@ -209,6 +209,7 @@ GameObject:
   - component: {fileID: 109145361}
   - component: {fileID: 109145360}
   - component: {fileID: 109145359}
+  - component: {fileID: 109145362}
   m_Layer: 5
   m_Name: Propulsores
   m_TagString: Untagged
@@ -299,6 +300,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!225 &109145362
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109145357}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &161240484
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,6 +324,7 @@ GameObject:
   - component: {fileID: 161240488}
   - component: {fileID: 161240487}
   - component: {fileID: 161240486}
+  - component: {fileID: 161240489}
   m_Layer: 5
   m_Name: sistema electrico
   m_TagString: Untagged
@@ -401,6 +415,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!225 &161240489
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 161240484}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &249282712
 GameObject:
   m_ObjectHideFlags: 0
@@ -413,6 +439,7 @@ GameObject:
   - component: {fileID: 249282716}
   - component: {fileID: 249282715}
   - component: {fileID: 249282714}
+  - component: {fileID: 249282717}
   m_Layer: 5
   m_Name: Bastidor
   m_TagString: Untagged
@@ -503,6 +530,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!225 &249282717
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 249282712}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &292199407
 GameObject:
   m_ObjectHideFlags: 0
@@ -575,6 +614,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1841168500}
+        m_TargetAssemblyTypeName: ControlUI, Assembly-CSharp
+        m_MethodName: OnTargetFound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnTargetLost:
     m_PersistentCalls:
       m_Calls:
@@ -582,6 +633,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1841168500}
+        m_TargetAssemblyTypeName: ControlUI, Assembly-CSharp
+        m_MethodName: OnTargetLost
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1294,6 +1357,7 @@ GameObject:
   - component: {fileID: 1155609971}
   - component: {fileID: 1155609970}
   - component: {fileID: 1155609969}
+  - component: {fileID: 1155609972}
   m_Layer: 5
   m_Name: luces led
   m_TagString: Untagged
@@ -1384,6 +1448,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!225 &1155609972
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1155609967}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1348963225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1643,6 +1719,7 @@ GameObject:
   - component: {fileID: 1454457706}
   - component: {fileID: 1454457705}
   - component: {fileID: 1454457704}
+  - component: {fileID: 1454457707}
   m_Layer: 5
   m_Name: tubo de presion
   m_TagString: Untagged
@@ -1733,6 +1810,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!225 &1454457707
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1454457702}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1673141800
 GameObject:
   m_ObjectHideFlags: 0
@@ -1896,6 +1985,7 @@ GameObject:
   - component: {fileID: 1785620968}
   - component: {fileID: 1785620967}
   - component: {fileID: 1785620966}
+  - component: {fileID: 1785620970}
   m_Layer: 5
   m_Name: Camara
   m_TagString: Untagged
@@ -1986,6 +2076,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0.042, y: 0.519}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &1785620970
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1785620965}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1790373576
 GameObject:
   m_ObjectHideFlags: 0
@@ -2061,6 +2163,61 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1790373576}
   m_CullTransparentMesh: 1
+--- !u!1 &1841168499
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1841168501}
+  - component: {fileID: 1841168500}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1841168500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841168499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c1e590c4deb06445b1012d8eaaf0670, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiElements:
+  - {fileID: 1785620965}
+  - {fileID: 1155609967}
+  - {fileID: 109145357}
+  - {fileID: 249282712}
+  - {fileID: 161240484}
+  - {fileID: 1454457702}
+  showTime: 1
+  fadeDuration: 0.3
+  popScale: 0.8
+  endScale: 0.9
+--- !u!4 &1841168501
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841168499}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.082055144, y: 0.089642346, z: 0.24683093}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1851683585
 GameObject:
   m_ObjectHideFlags: 0
@@ -2419,3 +2576,4 @@ SceneRoots:
   - {fileID: 2120375961}
   - {fileID: 729095500}
   - {fileID: 292199410}
+  - {fileID: 1841168501}
