@@ -3,11 +3,10 @@ using UnityEngine;
 
 public class ControlUI : MonoBehaviour
 {
-    public CanvasGroup[] uiElements;
+    public GameObject[] uiElements;
 
     public float showTime = 1f;
-
-    public float fadeDuration = 0.3f;
+    public float animDuration = 0.3f;
     public float popScale = 0.8f;
     public float endScale = 0.9f;
 
@@ -55,21 +54,18 @@ public class ControlUI : MonoBehaviour
         }
     }
 
-    IEnumerator AnimateIn(CanvasGroup ui)
+    IEnumerator AnimateIn(GameObject ui)
     {
-        ui.gameObject.SetActive(true);
+        ui.SetActive(true);
 
         float t = 0;
-
-        ui.alpha = 0;
         ui.transform.localScale = Vector3.one * popScale;
 
-        while (t < fadeDuration)
+        while (t < animDuration)
         {
             t += Time.deltaTime;
-            float p = t / fadeDuration;
+            float p = t / animDuration;
 
-            ui.alpha = Mathf.Lerp(0, 1, p);
             ui.transform.localScale = Vector3.Lerp(
                 Vector3.one * popScale,
                 Vector3.one,
@@ -79,42 +75,40 @@ public class ControlUI : MonoBehaviour
             yield return null;
         }
 
-        ui.alpha = 1;
         ui.transform.localScale = Vector3.one;
     }
 
-    IEnumerator AnimateOut(CanvasGroup ui)
+    IEnumerator AnimateOut(GameObject ui)
     {
         float t = 0;
 
         Vector3 startScale = ui.transform.localScale;
         Vector3 targetScale = Vector3.one * endScale;
 
-        float startAlpha = ui.alpha;
-
-        while (t < fadeDuration)
+        while (t < animDuration)
         {
             t += Time.deltaTime;
-            float p = t / fadeDuration;
+            float p = t / animDuration;
 
-            ui.alpha = Mathf.Lerp(startAlpha, 0, p);
-            ui.transform.localScale = Vector3.Lerp(startScale, targetScale, p);
+            ui.transform.localScale = Vector3.Lerp(
+                startScale,
+                targetScale,
+                p
+            );
 
             yield return null;
         }
 
-        ui.alpha = 0;
         ui.transform.localScale = Vector3.one;
-        ui.gameObject.SetActive(false);
+        ui.SetActive(false);
     }
 
     void HideAllInstant()
     {
         foreach (var ui in uiElements)
         {
-            ui.alpha = 0;
             ui.transform.localScale = Vector3.one;
-            ui.gameObject.SetActive(false);
+            ui.SetActive(false);
         }
     }
 }
