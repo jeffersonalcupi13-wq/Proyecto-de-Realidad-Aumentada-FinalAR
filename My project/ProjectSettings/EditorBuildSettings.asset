@@ -12,12 +12,12 @@ EditorBuildSettings:
     path: Assets/Escenas/000 - Menu.unity
     guid: 5f3c078fa9b76bb409a65fa0691fd778
   - enabled: 1
-    path: Assets/Escenas/01 - ModelTarget.unity
-    guid: 501b450eda0cc7845bc12030b70bdc5d
-  - enabled: 1
     path: Assets/Escenas/02 - ImageTarget.unity
     guid: cbb5cf025a3e3754cb003f2d2be40747
   - enabled: 1
     path: Assets/Escenas/03 - Barcode.unity
     guid: 102a64c7d2118cb41bb35115923521be
+  - enabled: 1
+    path: Assets/Escenas/01 - ModelTarget.unity
+    guid: 2cd4b3ade86644e47807f18a1f37ddde
   m_configObjects: {}
