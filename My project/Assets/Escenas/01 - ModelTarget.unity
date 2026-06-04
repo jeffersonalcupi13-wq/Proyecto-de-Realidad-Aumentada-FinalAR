@@ -1085,7 +1085,7 @@ MonoBehaviour:
   mOverrideSnappingPose: 0
   mBBoxMin: {x: -0.354414, y: -0.283409, z: -0.500586}
   mBBoxMax: {x: 0.353718, y: 0.297449, z: 0.500386}
-  mPreviewImage: {fileID: 0}
+  mPreviewImage: {fileID: 2800000, guid: 8b27ac5177894974b54df8b81060464e, type: 3}
   mEnhanceRuntimeDetection: 0
   m3DGuideViewModel: {fileID: 0}
   m2DGuideViewImage: {fileID: 0}
@@ -1097,7 +1097,7 @@ MonoBehaviour:
   mHeight: 1.000972
   m2DGuideViewMaterials: []
   m3DGuideViewMaterials: []
-  mSelectedGuideView: 
+  mSelectedGuideView: GuideView_0000
   mMotionHint: 1
   mTrackingMode: 1
   mTrackingOptimization: 0
