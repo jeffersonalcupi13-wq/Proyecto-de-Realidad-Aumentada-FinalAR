@@ -248,6 +248,7 @@ GameObject:
   - component: {fileID: 330460513}
   - component: {fileID: 330460515}
   - component: {fileID: 330460514}
+  - component: {fileID: 330460516}
   m_Layer: 5
   m_Name: sistema electrico
   m_TagString: Untagged
@@ -312,6 +313,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330460512}
   m_CullTransparentMesh: 1
+--- !u!114 &330460516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330460512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1a5bb014b219a4489417fa2ed7c0941, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arCamera: {fileID: 964554639}
 --- !u!1 &523475414
 GameObject:
   m_ObjectHideFlags: 0
@@ -915,6 +929,7 @@ GameObject:
   - component: {fileID: 1292178182}
   - component: {fileID: 1292178184}
   - component: {fileID: 1292178183}
+  - component: {fileID: 1292178185}
   m_Layer: 5
   m_Name: luces led
   m_TagString: Untagged
@@ -979,6 +994,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1292178181}
   m_CullTransparentMesh: 1
+--- !u!114 &1292178185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292178181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1a5bb014b219a4489417fa2ed7c0941, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arCamera: {fileID: 964554639}
 --- !u!1 &1353150574
 GameObject:
   m_ObjectHideFlags: 0
@@ -1265,6 +1293,7 @@ GameObject:
   - component: {fileID: 1550759265}
   - component: {fileID: 1550759267}
   - component: {fileID: 1550759266}
+  - component: {fileID: 1550759268}
   m_Layer: 5
   m_Name: propulsores
   m_TagString: Untagged
@@ -1329,6 +1358,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1550759264}
   m_CullTransparentMesh: 1
+--- !u!114 &1550759268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1550759264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1a5bb014b219a4489417fa2ed7c0941, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arCamera: {fileID: 964554639}
 --- !u!1 &1566247191
 GameObject:
   m_ObjectHideFlags: 0
@@ -1457,7 +1499,6 @@ GameObject:
   - component: {fileID: 1620719979}
   - component: {fileID: 1620719978}
   - component: {fileID: 1620719977}
-  - component: {fileID: 1620719981}
   m_Layer: 5
   m_Name: Pantallitas
   m_TagString: Untagged
@@ -1553,18 +1594,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0.042, y: 0.519}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1620719981
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1620719975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28f6dc530d978df44a6035a3ec309784, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1680921312
 GameObject:
   m_ObjectHideFlags: 0
@@ -1576,6 +1605,7 @@ GameObject:
   - component: {fileID: 1680921313}
   - component: {fileID: 1680921315}
   - component: {fileID: 1680921314}
+  - component: {fileID: 1680921316}
   m_Layer: 5
   m_Name: Camara
   m_TagString: Untagged
@@ -1640,6 +1670,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1680921312}
   m_CullTransparentMesh: 1
+--- !u!114 &1680921316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1680921312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1a5bb014b219a4489417fa2ed7c0941, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arCamera: {fileID: 964554639}
 --- !u!1 &1693022832
 GameObject:
   m_ObjectHideFlags: 0
@@ -1651,6 +1694,7 @@ GameObject:
   - component: {fileID: 1693022833}
   - component: {fileID: 1693022835}
   - component: {fileID: 1693022834}
+  - component: {fileID: 1693022836}
   m_Layer: 5
   m_Name: tubo de presion
   m_TagString: Untagged
@@ -1715,6 +1759,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1693022832}
   m_CullTransparentMesh: 1
+--- !u!114 &1693022836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1693022832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1a5bb014b219a4489417fa2ed7c0941, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arCamera: {fileID: 964554639}
 --- !u!1 &1892253799
 GameObject:
   m_ObjectHideFlags: 0
@@ -1880,6 +1937,7 @@ GameObject:
   - component: {fileID: 2095402240}
   - component: {fileID: 2095402242}
   - component: {fileID: 2095402241}
+  - component: {fileID: 2095402243}
   m_Layer: 5
   m_Name: bastidor
   m_TagString: Untagged
@@ -1944,6 +2002,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2095402239}
   m_CullTransparentMesh: 1
+--- !u!114 &2095402243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2095402239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1a5bb014b219a4489417fa2ed7c0941, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arCamera: {fileID: 964554639}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
