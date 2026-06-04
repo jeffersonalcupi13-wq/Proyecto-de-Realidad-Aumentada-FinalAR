@@ -1007,7 +1007,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arCamera: {fileID: 964554639}
---- !u!1 &1353150574
+--- !u!1 &1401731442
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1015,10 +1015,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1353150578}
-  - component: {fileID: 1353150577}
-  - component: {fileID: 1353150576}
-  - component: {fileID: 1353150579}
+  - component: {fileID: 1401731446}
+  - component: {fileID: 1401731445}
+  - component: {fileID: 1401731444}
+  - component: {fileID: 1401731443}
   m_Layer: 0
   m_Name: ModelTarget
   m_TagString: Untagged
@@ -1026,13 +1026,31 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1353150576
+--- !u!114 &1401731443
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1353150574}
+  m_GameObject: {fileID: 1401731442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1621554113, guid: 8a9a760f95896c34689febc965510927, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mObserverBehaviour: {fileID: 1401731445}
+  mHiddenRoot: {fileID: 0}
+  mTargetName: submarino
+  mDatasetName: Vuforia/submarino.xml
+  mCastedBehaviour: {fileID: 1401731445}
+  mModelTargetPreview: {fileID: 0}
+--- !u!114 &1401731444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1401731442}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 886328de6a5c14cbb85854fdf1a5085b, type: 3}
@@ -1070,13 +1088,13 @@ MonoBehaviour:
   OnTargetLost:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1353150577
+--- !u!114 &1401731445
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1353150574}
+  m_GameObject: {fileID: 1401731442}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -75151077, guid: 8a9a760f95896c34689febc965510927, type: 3}
@@ -1095,7 +1113,7 @@ MonoBehaviour:
   mOverrideSnappingPose: 0
   mBBoxMin: {x: -0.354414, y: -0.283409, z: -0.500586}
   mBBoxMax: {x: 0.353718, y: 0.297449, z: 0.500386}
-  mPreviewImage: {fileID: 2800000, guid: 8b27ac5177894974b54df8b81060464e, type: 3}
+  mPreviewImage: {fileID: 0}
   mEnhanceRuntimeDetection: 0
   m3DGuideViewModel: {fileID: 0}
   m2DGuideViewImage: {fileID: 0}
@@ -1107,22 +1125,22 @@ MonoBehaviour:
   mHeight: 1.000972
   m2DGuideViewMaterials: []
   m3DGuideViewMaterials: []
-  mSelectedGuideView: GuideView_0000
+  mSelectedGuideView: 
   mMotionHint: 1
-  mTrackingMode: 1
+  mTrackingMode: 2
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
-  mHasRealisticTextures: 0
-  mPreview: {fileID: 1353150579}
+  mHasRealisticTextures: 1
+  mPreview: {fileID: 1401731443}
   mAutoValidationDataSetName: 
   mGuideViewDisplayModeNeedsUpgrade: 0
---- !u!4 &1353150578
+--- !u!4 &1401731446
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1353150574}
+  m_GameObject: {fileID: 1401731442}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -1132,24 +1150,6 @@ Transform:
   - {fileID: 1620719980}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1353150579
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1353150574}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1621554113, guid: 8a9a760f95896c34689febc965510927, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mObserverBehaviour: {fileID: 1353150577}
-  mHiddenRoot: {fileID: 0}
-  mTargetName: submarino
-  mDatasetName: Vuforia/submarino.xml
-  mCastedBehaviour: {fileID: 1353150577}
-  mModelTargetPreview: {fileID: 0}
 --- !u!1 &1472146834
 GameObject:
   m_ObjectHideFlags: 0
@@ -1587,7 +1587,7 @@ RectTransform:
   - {fileID: 2095402240}
   - {fileID: 330460513}
   - {fileID: 1550759265}
-  m_Father: {fileID: 1353150578}
+  m_Father: {fileID: 1401731446}
   m_LocalEulerAnglesHint: {x: 0, y: -80.857, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2024,4 +2024,4 @@ SceneRoots:
   - {fileID: 1892253802}
   - {fileID: 1566247196}
   - {fileID: 853866543}
-  - {fileID: 1353150578}
+  - {fileID: 1401731446}
