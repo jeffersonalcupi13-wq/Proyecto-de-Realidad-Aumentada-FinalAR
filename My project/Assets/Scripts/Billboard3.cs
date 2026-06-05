@@ -9,7 +9,11 @@ public class Billboard3 : MonoBehaviour
         if (arCamera == null)
             return;
 
-        transform.LookAt(arCamera.transform);
+        Vector3 targetPosition = arCamera.transform.position;
+
+        targetPosition.y = transform.position.y;
+
+        transform.LookAt(targetPosition);
 
         transform.Rotate(0, 180f, 0);
     }

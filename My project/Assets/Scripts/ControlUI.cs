@@ -4,48 +4,52 @@ using UnityEngine;
 public class ControlUI : MonoBehaviour
 {
     public GameObject[] uiElements;
+    public float showTime = 2f;
 
-    public float showTime = 1f;
-    public float animDuration = 0.3f;
-    public float popScale = 0.8f;
-    public float endScale = 0.9f;
+    private Coroutine sequenceCoroutine;
+    private bool targetFound = false;
 
-    private Coroutine routine;
-
-    void Start()
+    private void Start()
     {
-        HideAllInstant();
+        HideAll();
     }
 
     public void OnTargetFound()
     {
-        if (routine != null)
-            StopCoroutine(routine);
+        if (targetFound) return;
 
-        routine = StartCoroutine(PlaySequence());
+        targetFound = true;
+
+        if (sequenceCoroutine != null)
+            StopCoroutine(sequenceCoroutine);
+
+        sequenceCoroutine = StartCoroutine(PlaySequence());
     }
 
     public void OnTargetLost()
     {
-        if (routine != null)
-            StopCoroutine(routine);
+        targetFound = false;
 
-        HideAllInstant();
+        if (sequenceCoroutine != null)
+        {
+            StopCoroutine(sequenceCoroutine);
+            sequenceCoroutine = null;
+        }
+
+        HideAll();
     }
 
-    IEnumerator PlaySequence()
+    private IEnumerator PlaySequence()
     {
         int index = 0;
 
-        while (true)
+        while (targetFound)
         {
-            HideAllInstant();
+            HideAll();
 
-            yield return StartCoroutine(AnimateIn(uiElements[index]));
+            uiElements[index].SetActive(true);
 
             yield return new WaitForSeconds(showTime);
-
-            yield return StartCoroutine(AnimateOut(uiElements[index]));
 
             index++;
 
@@ -54,61 +58,12 @@ public class ControlUI : MonoBehaviour
         }
     }
 
-    IEnumerator AnimateIn(GameObject ui)
+    private void HideAll()
     {
-        ui.SetActive(true);
-
-        float t = 0;
-        ui.transform.localScale = Vector3.one * popScale;
-
-        while (t < animDuration)
+        foreach (GameObject obj in uiElements)
         {
-            t += Time.deltaTime;
-            float p = t / animDuration;
-
-            ui.transform.localScale = Vector3.Lerp(
-                Vector3.one * popScale,
-                Vector3.one,
-                p
-            );
-
-            yield return null;
-        }
-
-        ui.transform.localScale = Vector3.one;
-    }
-
-    IEnumerator AnimateOut(GameObject ui)
-    {
-        float t = 0;
-
-        Vector3 startScale = ui.transform.localScale;
-        Vector3 targetScale = Vector3.one * endScale;
-
-        while (t < animDuration)
-        {
-            t += Time.deltaTime;
-            float p = t / animDuration;
-
-            ui.transform.localScale = Vector3.Lerp(
-                startScale,
-                targetScale,
-                p
-            );
-
-            yield return null;
-        }
-
-        ui.transform.localScale = Vector3.one;
-        ui.SetActive(false);
-    }
-
-    void HideAllInstant()
-    {
-        foreach (var ui in uiElements)
-        {
-            ui.transform.localScale = Vector3.one;
-            ui.SetActive(false);
+            if (obj != null)
+                obj.SetActive(false);
         }
     }
 }
