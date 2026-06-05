@@ -1490,7 +1490,7 @@ MonoBehaviour:
   audioClips:
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: c0121442fc50ab54ea5b1df07b884b02, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
