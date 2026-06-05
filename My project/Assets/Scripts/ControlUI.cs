@@ -3,8 +3,14 @@ using UnityEngine;
 
 public class ControlUI : MonoBehaviour
 {
+    [Header("UI")]
     public CanvasGroup[] uiElements;
 
+    [Header("Audio")]
+    public AudioClip[] audioClips;
+    public AudioSource audioSource;
+
+    [Header("Animación")]
     public float fadeDuration = 0.5f;
     public float visibleTime = 5f;
 
@@ -38,6 +44,9 @@ public class ControlUI : MonoBehaviour
             sequenceCoroutine = null;
         }
 
+        if (audioSource != null)
+            audioSource.Stop();
+
         HideAllInstant();
     }
 
@@ -48,6 +57,17 @@ public class ControlUI : MonoBehaviour
         while (targetFound)
         {
             CanvasGroup current = uiElements[index];
+
+            // Reproducir audio correspondiente
+            if (audioSource != null &&
+                audioClips != null &&
+                index < audioClips.Length &&
+                audioClips[index] != null)
+            {
+                audioSource.Stop();
+                audioSource.clip = audioClips[index];
+                audioSource.Play();
+            }
 
             yield return StartCoroutine(FadeIn(current));
 
