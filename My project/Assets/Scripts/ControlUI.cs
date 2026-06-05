@@ -3,15 +3,17 @@ using UnityEngine;
 
 public class ControlUI : MonoBehaviour
 {
-    public GameObject[] uiElements;
-    public float showTime = 2f;
+    public CanvasGroup[] uiElements;
+
+    public float fadeDuration = 0.5f;
+    public float visibleTime = 5f;
 
     private Coroutine sequenceCoroutine;
-    private bool targetFound = false;
+    private bool targetFound;
 
     private void Start()
     {
-        HideAll();
+        HideAllInstant();
     }
 
     public void OnTargetFound()
@@ -36,7 +38,7 @@ public class ControlUI : MonoBehaviour
             sequenceCoroutine = null;
         }
 
-        HideAll();
+        HideAllInstant();
     }
 
     private IEnumerator PlaySequence()
@@ -45,11 +47,13 @@ public class ControlUI : MonoBehaviour
 
         while (targetFound)
         {
-            HideAll();
+            CanvasGroup current = uiElements[index];
 
-            uiElements[index].SetActive(true);
+            yield return StartCoroutine(FadeIn(current));
 
-            yield return new WaitForSeconds(showTime);
+            yield return new WaitForSeconds(visibleTime);
+
+            yield return StartCoroutine(FadeOut(current));
 
             index++;
 
@@ -58,12 +62,43 @@ public class ControlUI : MonoBehaviour
         }
     }
 
-    private void HideAll()
+    private IEnumerator FadeIn(CanvasGroup cg)
     {
-        foreach (GameObject obj in uiElements)
+        cg.gameObject.SetActive(true);
+
+        float t = 0f;
+
+        while (t < fadeDuration)
         {
-            if (obj != null)
-                obj.SetActive(false);
+            t += Time.deltaTime;
+            cg.alpha = Mathf.Lerp(0f, 1f, t / fadeDuration);
+            yield return null;
+        }
+
+        cg.alpha = 1f;
+    }
+
+    private IEnumerator FadeOut(CanvasGroup cg)
+    {
+        float t = 0f;
+
+        while (t < fadeDuration)
+        {
+            t += Time.deltaTime;
+            cg.alpha = Mathf.Lerp(1f, 0f, t / fadeDuration);
+            yield return null;
+        }
+
+        cg.alpha = 0f;
+        cg.gameObject.SetActive(false);
+    }
+
+    private void HideAllInstant()
+    {
+        foreach (CanvasGroup cg in uiElements)
+        {
+            cg.alpha = 0f;
+            cg.gameObject.SetActive(false);
         }
     }
 }
