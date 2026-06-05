@@ -1488,12 +1488,12 @@ MonoBehaviour:
   - {fileID: 1298534142}
   - {fileID: 268086329}
   audioClips:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 7be220aa47b0f9341b2aca8d3c3bdf12, type: 3}
+  - {fileID: 8300000, guid: 92371339327108d47ad55aab08ade7fe, type: 3}
   - {fileID: 8300000, guid: c0121442fc50ab54ea5b1df07b884b02, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 96bfa893c008a154f99f40618b60e223, type: 3}
+  - {fileID: 8300000, guid: c13dc638bb861e342bb04348dc9b32b8, type: 3}
+  - {fileID: 8300000, guid: ebf0d94642aa1aa48a4f9f7dcf28621d, type: 3}
   audioSource: {fileID: 853866544}
   fadeDuration: 0.5
   visibleTime: 8
