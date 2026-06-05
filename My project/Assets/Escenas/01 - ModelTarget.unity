@@ -1487,7 +1487,7 @@ MonoBehaviour:
   - {fileID: 1298534142}
   - {fileID: 268086329}
   fadeDuration: 0.5
-  visibleTime: 5
+  visibleTime: 8
 --- !u!4 &853866543
 Transform:
   m_ObjectHideFlags: 0
