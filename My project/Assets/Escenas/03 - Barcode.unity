@@ -776,6 +776,7 @@ GameObject:
   - component: {fileID: 332775375}
   - component: {fileID: 332775374}
   - component: {fileID: 332775373}
+  - component: {fileID: 332775376}
   m_Layer: 5
   m_Name: vermas
   m_TagString: Untagged
@@ -845,7 +846,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 332775374}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 332775376}
+        m_TargetAssemblyTypeName: AbrirWeb, Assembly-CSharp
+        m_MethodName: AbrirPagina
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &332775374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -884,6 +897,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 332775371}
   m_CullTransparentMesh: 1
+--- !u!114 &332775376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 332775371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fe0e583daa21b64db3760ca5ad6331e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  url: https://audacia.ai/proyectos/
 --- !u!1 &381496539
 GameObject:
   m_ObjectHideFlags: 0
@@ -2690,6 +2716,7 @@ GameObject:
   - component: {fileID: 2002555722}
   - component: {fileID: 2002555721}
   - component: {fileID: 2002555720}
+  - component: {fileID: 2002555723}
   m_Layer: 5
   m_Name: vermas
   m_TagString: Untagged
@@ -2759,7 +2786,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2002555721}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2002555723}
+        m_TargetAssemblyTypeName: AbrirWeb, Assembly-CSharp
+        m_MethodName: AbrirPagina
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2002555721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2798,6 +2837,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2002555718}
   m_CullTransparentMesh: 1
+--- !u!114 &2002555723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2002555718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fe0e583daa21b64db3760ca5ad6331e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  url: https://audacia.ai/proyectos/
 --- !u!1 &2108662846
 GameObject:
   m_ObjectHideFlags: 0
