@@ -14,8 +14,9 @@ public class ControlUI : MonoBehaviour
     public float fadeDuration = 0.5f;
     public float visibleTime = 5f;
 
-    private Coroutine sequenceCoroutine;
     private bool targetFound;
+    private bool isShowing;
+    private int currentIndex;
 
     private void Start()
     {
@@ -24,25 +25,14 @@ public class ControlUI : MonoBehaviour
 
     public void OnTargetFound()
     {
-        if (targetFound) return;
-
         targetFound = true;
-
-        if (sequenceCoroutine != null)
-            StopCoroutine(sequenceCoroutine);
-
-        sequenceCoroutine = StartCoroutine(PlaySequence());
     }
 
     public void OnTargetLost()
     {
         targetFound = false;
-
-        if (sequenceCoroutine != null)
-        {
-            StopCoroutine(sequenceCoroutine);
-            sequenceCoroutine = null;
-        }
+        isShowing = false;
+        currentIndex = 0;
 
         if (audioSource != null)
             audioSource.Stop();
@@ -50,36 +40,54 @@ public class ControlUI : MonoBehaviour
         HideAllInstant();
     }
 
-    private IEnumerator PlaySequence()
+    private void Update()
     {
-        int index = 0;
+        if (!targetFound || isShowing)
+            return;
 
-        while (targetFound)
+#if UNITY_ANDROID || UNITY_IOS
+        if (Input.touchCount > 0 &&
+            Input.GetTouch(0).phase == TouchPhase.Began)
         {
-            CanvasGroup current = uiElements[index];
-
-            // Reproducir audio correspondiente
-            if (audioSource != null &&
-                audioClips != null &&
-                index < audioClips.Length &&
-                audioClips[index] != null)
-            {
-                audioSource.Stop();
-                audioSource.clip = audioClips[index];
-                audioSource.Play();
-            }
-
-            yield return StartCoroutine(FadeIn(current));
-
-            yield return new WaitForSeconds(visibleTime);
-
-            yield return StartCoroutine(FadeOut(current));
-
-            index++;
-
-            if (index >= uiElements.Length)
-                index = 0;
+            StartCoroutine(ShowCurrentUI());
         }
+#else
+        if (Input.GetMouseButtonDown(0))
+        {
+            StartCoroutine(ShowCurrentUI());
+        }
+#endif
+    }
+
+    private IEnumerator ShowCurrentUI()
+    {
+        if (currentIndex >= uiElements.Length)
+            yield break;
+
+        isShowing = true;
+
+        CanvasGroup current = uiElements[currentIndex];
+
+        // Reproducir audio correspondiente
+        if (audioSource != null &&
+            audioClips != null &&
+            currentIndex < audioClips.Length &&
+            audioClips[currentIndex] != null)
+        {
+            audioSource.Stop();
+            audioSource.clip = audioClips[currentIndex];
+            audioSource.Play();
+        }
+
+        yield return StartCoroutine(FadeIn(current));
+
+        yield return new WaitForSeconds(visibleTime);
+
+        yield return StartCoroutine(FadeOut(current));
+
+        currentIndex++;
+
+        isShowing = false;
     }
 
     private IEnumerator FadeIn(CanvasGroup cg)
