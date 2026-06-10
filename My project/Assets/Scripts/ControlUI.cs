@@ -1,76 +1,93 @@
-using System.Collections;
 using UnityEngine;
 
 public class ControlUI : MonoBehaviour
 {
-    [Header("UI")]
+    [Header("Advertencia")]
+    public CanvasGroup warningUI;
+
+    [Header("Pantallas")]
     public CanvasGroup[] uiElements;
 
     [Header("Audio")]
     public AudioClip[] audioClips;
     public AudioSource audioSource;
 
-    [Header("Animación")]
-    public float fadeDuration = 0.5f;
-    public float visibleTime = 5f;
+    private bool targetFound = false;
+    private bool firstClick = true;
+    private int currentIndex = -1;
 
-    private bool targetFound;
-    private bool isShowing;
-    private int currentIndex;
-
-    private void Start()
+    void Start()
     {
-        HideAllInstant();
+        HideEverything();
     }
 
     public void OnTargetFound()
     {
         targetFound = true;
+
+        HideEverything();
+
+        if (warningUI != null)
+            Show(warningUI);
+
+        firstClick = true;
+        currentIndex = -1;
     }
 
     public void OnTargetLost()
     {
         targetFound = false;
-        isShowing = false;
-        currentIndex = 0;
 
         if (audioSource != null)
             audioSource.Stop();
 
-        HideAllInstant();
+        HideEverything();
     }
 
-    private void Update()
+    void Update()
     {
-        if (!targetFound || isShowing)
+        if (!targetFound)
             return;
+
+        bool clicked = Input.GetMouseButtonDown(0);
 
 #if UNITY_ANDROID || UNITY_IOS
         if (Input.touchCount > 0 &&
             Input.GetTouch(0).phase == TouchPhase.Began)
         {
-            StartCoroutine(ShowCurrentUI());
-        }
-#else
-        if (Input.GetMouseButtonDown(0))
-        {
-            StartCoroutine(ShowCurrentUI());
+            clicked = true;
         }
 #endif
-    }
 
-    private IEnumerator ShowCurrentUI()
-    {
+        if (!clicked)
+            return;
+
+        // Primer click
+        if (firstClick)
+        {
+            firstClick = false;
+
+            if (warningUI != null)
+                Hide(warningUI);
+        }
+
+        // Ocultar pantalla anterior
+        if (currentIndex >= 0)
+        {
+            Hide(uiElements[currentIndex]);
+        }
+
+        // Siguiente pantalla
+        currentIndex++;
+
         if (currentIndex >= uiElements.Length)
-            yield break;
+            currentIndex = 0;
 
-        isShowing = true;
+        // Mostrar pantalla
+        Show(uiElements[currentIndex]);
 
-        CanvasGroup current = uiElements[currentIndex];
-
-        // Reproducir audio correspondiente
+        // Audio correspondiente
         if (audioSource != null &&
-            audioClips != null &&
             currentIndex < audioClips.Length &&
             audioClips[currentIndex] != null)
         {
@@ -78,55 +95,33 @@ public class ControlUI : MonoBehaviour
             audioSource.clip = audioClips[currentIndex];
             audioSource.Play();
         }
-
-        yield return StartCoroutine(FadeIn(current));
-
-        yield return new WaitForSeconds(visibleTime);
-
-        yield return StartCoroutine(FadeOut(current));
-
-        currentIndex++;
-
-        isShowing = false;
     }
 
-    private IEnumerator FadeIn(CanvasGroup cg)
+    void Show(CanvasGroup cg)
     {
+        if (cg == null) return;
+
         cg.gameObject.SetActive(true);
-
-        float t = 0f;
-
-        while (t < fadeDuration)
-        {
-            t += Time.deltaTime;
-            cg.alpha = Mathf.Lerp(0f, 1f, t / fadeDuration);
-            yield return null;
-        }
-
         cg.alpha = 1f;
     }
 
-    private IEnumerator FadeOut(CanvasGroup cg)
+    void Hide(CanvasGroup cg)
     {
-        float t = 0f;
-
-        while (t < fadeDuration)
-        {
-            t += Time.deltaTime;
-            cg.alpha = Mathf.Lerp(1f, 0f, t / fadeDuration);
-            yield return null;
-        }
+        if (cg == null) return;
 
         cg.alpha = 0f;
         cg.gameObject.SetActive(false);
     }
 
-    private void HideAllInstant()
+    void HideEverything()
     {
+        if (warningUI != null)
+            Hide(warningUI);
+
         foreach (CanvasGroup cg in uiElements)
         {
-            cg.alpha = 0f;
-            cg.gameObject.SetActive(false);
+            if (cg != null)
+                Hide(cg);
         }
     }
 }
